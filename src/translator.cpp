@@ -1,7 +1,45 @@
 #include <QString>
+#include <QStringList>
+#include <QStringList>
 #include <iostream>
 #include <translator.h>
 
+#include "locale.h"
+
 using namespace std;
 
-QString Translator::hello() { return QString("Hello"); }
+Translator::Translator(QObject *parent) : QObject(parent) {}
+
+QString Translator::translate(QString &origin) { return QString("Hello"); }
+
+QStringList Translator::listSupportedLanguages() const {
+
+  return fullStringMap.keys();
+}
+
+QString Translator::word() const { return m_word; }
+
+void Translator::setWord(QString &word) {
+  if (m_word == word)
+    return;
+
+  m_word = word;
+}
+
+QString Translator::source() const { return m_source; }
+
+void Translator::setSource(QString &source) {
+  if (m_source == source)
+    return;
+
+  m_source = source;
+}
+
+QString Translator::target() const { return m_target; }
+
+void Translator::setTarget(QString &target) {
+  if (m_target == target)
+    return;
+
+  m_target = target;
+}

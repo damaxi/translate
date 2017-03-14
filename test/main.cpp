@@ -1,15 +1,12 @@
-#define CATCH_CONFIG_MAIN  // This tells Catch to provide a main() - only do this in one cpp file
-#include <translator.h>
+#define CATCH_CONFIG_MAIN
+
 #include "catch.hpp"
+#include <QStringList>
+#include <translator.h>
 
-unsigned int Factorial( unsigned int number ) {
-    return number <= 1 ? number : Factorial(number-1)*number;
-}
-
-TEST_CASE( "Factorials are computed", "[factorial]" ) {
-    REQUIRE( Factorial(1) == 1 );
-    REQUIRE( Factorial(2) == 2 );
-    REQUIRE( Factorial(3) == 6 );
-    REQUIRE( Factorial(10) == 3628800 );
-    Translator trans;
+TEST_CASE("A method should return locales", "[locales]") {
+  Translator translator;
+  QStringList locales = translator.listSupportedLanguages();
+  REQUIRE(locales[0] == "english");
+  REQUIRE(locales[1] == "polish");
 }
