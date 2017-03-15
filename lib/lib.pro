@@ -22,10 +22,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    translate.cpp
+    translate.cpp \
+    translator/google.cpp
 
 HEADERS += \
-    translate.h
+    translate.h \
+    helper/locale.h \
+    translator/google.h
 unix {
     target.path = /usr/lib
     INSTALLS += target
