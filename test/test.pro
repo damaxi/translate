@@ -7,6 +7,7 @@
 QT       += testlib
 
 QT       -= gui
+QT       += core network
 
 TARGET = tst_testtest
 CONFIG   += console
@@ -28,7 +29,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     main.cpp \
-    translatetest.cpp
+    translatetest.cpp \
+    googletranslatortest.cpp
 DEFINES += SRCDIR=\\\"$$PWD/\\\"
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../lib/release/ -llib
@@ -47,4 +49,6 @@ else:unix: PRE_TARGETDEPS += $$OUT_PWD/../lib/liblib.a
 DISTFILES +=
 
 HEADERS += \
-    translatetest.h
+    translatetest.h \
+    googletranslatortest.h \
+    threadsafeqsignalspy.h

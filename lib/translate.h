@@ -3,9 +3,11 @@
 
 #include <QObject>
 
+QT_BEGIN_NAMESPACE
 class QString;
 class QStringList;
 enum class Locale;
+QT_END_NAMESPACE
 
 class Translate : QObject {
   Q_OBJECT
