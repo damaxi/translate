@@ -7,11 +7,13 @@ class QStringList;
 enum class Locale;
 
 class Translator : QObject {
+  Q_OBJECT
   Q_PROPERTY(QString word READ word WRITE setWord NOTIFY notifyWord)
   Q_PROPERTY(QString source READ source WRITE setSource NOTIFY notifySource)
   Q_PROPERTY(QString target READ target WRITE setTarget NOTIFY notifyTarget)
 public:
   Translator(QObject *parent = 0);
+  virtual ~Translator() = default;
 
   QString translate(QString &origin);
 

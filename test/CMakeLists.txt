@@ -1,5 +1,4 @@
 set(TEST_TARGET "tests")
-set(CMAKE_AUTOMOC OFF)
 
 if(NOT TARGET Catch)
 	include(ExternalProject)

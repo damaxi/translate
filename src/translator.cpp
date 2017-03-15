@@ -24,6 +24,7 @@ void Translator::setWord(QString &word) {
     return;
 
   m_word = word;
+  emit notifyWord();
 }
 
 QString Translator::source() const { return m_source; }
@@ -33,6 +34,7 @@ void Translator::setSource(QString &source) {
     return;
 
   m_source = source;
+  emit notifySource();
 }
 
 QString Translator::target() const { return m_target; }
@@ -42,4 +44,5 @@ void Translator::setTarget(QString &target) {
     return;
 
   m_target = target;
+  emit notifyTarget();
 }
