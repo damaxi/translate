@@ -3,9 +3,7 @@
 
 #include <QMap>
 
-enum class Locale { en, pl };
-
-static QMap<QString, Locale> fullStringMap({{"english", Locale::en},
-                                            {"polish", Locale::pl}});
+static QMap<QString, QString> fullStringMap({{"english", "en"},
+                                             {"polish", "pl"}});
 
 #endif // LOCALE_H

@@ -50,5 +50,4 @@ DISTFILES +=
 
 HEADERS += \
     translatetest.h \
-    googletranslatortest.h \
-    threadsafeqsignalspy.h
+    googletranslatortest.h
