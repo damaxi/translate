@@ -30,7 +30,8 @@ SOURCES += \
 HEADERS += \
     translate.h \
     helper/locale.h \
-    translator/googletranslator.h
+    translator/googletranslator.h \
+    translator/abstracttranslator.h
 unix {
     target.path = /usr/lib
     INSTALLS += target

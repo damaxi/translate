@@ -7,7 +7,7 @@
 QT       += testlib
 
 QT       -= gui
-QT       += core network
+QT       += core network widgets
 
 TARGET = tst_testtest
 CONFIG   += console

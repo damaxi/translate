@@ -1,9 +1,9 @@
 #ifndef GOOGLETRANSLATORTEST_H
 #define GOOGLETRANSLATORTEST_H
 
-#include "threadsafeqsignalspy.h"
 #include "translator/googletranslator.h"
 #include <QObject>
+#include <QSignalSpy>
 
 class GoogleTranslatorTest : public QObject {
   Q_OBJECT
@@ -12,10 +12,12 @@ public:
 
 private slots:
   void translate();
+  void translateComplicated();
+  void translateNonExistance();
 
 private:
   GoogleTranslator m_googleTranslator;
-  ThreadsafeQSignalSpy m_signal;
+  QSignalSpy m_signal;
 };
 
 #endif // GOOGLETRANSLATORTEST_H

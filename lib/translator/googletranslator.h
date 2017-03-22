@@ -1,28 +1,26 @@
 #ifndef GOOGLE_H
 #define GOOGLE_H
 
-#include <QNetworkAccessManager>
+#include "abstracttranslator.h"
 
 QT_BEGIN_NAMESPACE
 class QString;
 class QNetworkReply;
 QT_END_NAMESPACE
 
-class GoogleTranslator : public QObject {
+class GoogleTranslator : public QObject, public AbstractTranslator {
 
   Q_OBJECT
 public:
   GoogleTranslator(QObject *parent = 0);
 
-  QString translate(QString word, QString source, QString target);
-
-  void handle(QNetworkReply *reply);
+  QString translate(QString word, QString source, QString target) override;
 
 signals:
   void translateNotify(QString translated);
 
 private:
-  QNetworkAccessManager m_network;
+  void handle(QNetworkReply *reply) override;
 };
 
 #endif // GOOGLE_H

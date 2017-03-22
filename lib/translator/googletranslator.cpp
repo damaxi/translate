@@ -1,10 +1,14 @@
 #include "googletranslator.h"
 
-#include <QNetworkReply>
+#include <QDebug>
+#include <QJsonArray>
+#include <QJsonDocument>
 #include <QNetworkReply>
 #include <QObject>
+#include <QRegularExpression>
 #include <QString>
 #include <QUrl>
+#include <QVariantList>
 
 static QString TRANSLATOR_URL =
     "https://translate.googleapis.com/translate_a/single?client=gtx&sl="
@@ -14,7 +18,8 @@ static QString TRANSLATOR_URL =
     "&dt=t&q="
     "%3";
 
-GoogleTranslator::GoogleTranslator(QObject *parent) : QObject(parent) {
+GoogleTranslator::GoogleTranslator(QObject *parent)
+    : QObject(parent), AbstractTranslator() {
   connect(&m_network, &QNetworkAccessManager::finished, this,
           &GoogleTranslator::handle);
 }
@@ -27,5 +32,15 @@ QString GoogleTranslator::translate(QString word, QString source,
 }
 
 void GoogleTranslator::handle(QNetworkReply *reply) {
-  emit translateNotify("dupa");
+  QString replyString(reply->readAll());
+  replyString.replace("[", "");
+  replyString.replace("]", "");
+  QStringList keys = replyString.split(",", QString::SkipEmptyParts);
+  QString translated;
+  if (keys.length() == 4) {
+    translated = keys.first();
+    translated.replace("\"", "");
+  }
+
+  emit translateNotify(translated);
 }
