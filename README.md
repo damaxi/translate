@@ -11,4 +11,5 @@ Exposing easy to use Qt API which consist of:
 * Output parameters:
 	* translated word
 	* error flag
+
 The user set up one of parameter then when all parameters are setted, the word is auto-translated. If there is connection error then auto-proxy set up next translate engine.
