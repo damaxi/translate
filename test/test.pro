@@ -9,7 +9,7 @@ QT       += testlib
 QT       -= gui
 QT       += core network widgets
 
-TARGET = tst_testtest
+TARGET = test_translate
 CONFIG   += console
 CONFIG   -= app_bundle
 
@@ -33,18 +33,18 @@ SOURCES += \
     googletranslatortest.cpp
 DEFINES += SRCDIR=\\\"$$PWD/\\\"
 
-win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../lib/release/ -llib
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../lib/debug/ -llib
-else:unix: LIBS += -L$$OUT_PWD/../lib/ -llib
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../lib/release/ -ltranslate
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../lib/debug/ -ltranslate
+else:unix: LIBS += -L$$OUT_PWD/../lib/ -ltranslate
 
 INCLUDEPATH += $$PWD/../lib
 DEPENDPATH += $$PWD/../lib
 
-win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../lib/release/liblib.a
-else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../lib/debug/liblib.a
-else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../lib/release/lib.lib
-else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../lib/debug/lib.lib
-else:unix: PRE_TARGETDEPS += $$OUT_PWD/../lib/liblib.a
+win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../lib/release/libtranslate.a
+else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../lib/debug/libtranslate.a
+else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../lib/release/lib.translate
+else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../lib/debug/lib.translate
+else:unix: PRE_TARGETDEPS += $$OUT_PWD/../lib/libtranslate.a
 
 DISTFILES +=
 

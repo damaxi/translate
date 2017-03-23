@@ -1,0 +1,23 @@
+language: cpp
+dist: trusty
+compiler: g++
+sudo: required
+
+before_install:
+  - sudo add-apt-repository ppa:beineri/opt-qt58-trusty -y
+  - sudo apt-get update
+
+install:
+  - sudo apt-get install qt58base 
+  - sudo apt-get install qt58charts-no-lgpl 
+  - sudo apt-get install qt58quickcontrols2 
+  - sudo apt-get install qt58location 
+  - sudo apt-get install qt58declarative
+  - sudo apt-get install checkinstall 
+  - source /opt/qt58/bin/qt58-env.sh
+
+script:
+  - mkdir build; cd build
+  - qmake PREFIX=/usr ..
+  - make
+  - ./test/test_translate
