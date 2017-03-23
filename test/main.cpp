@@ -1,8 +1,8 @@
 #include "googletranslatortest.h"
 #include "translatetest.h"
 #include <QCoreApplication>
+#include <QDebug>
 #include <QtTest/QtTest>
-
 int main(int argc, char *argv[]) {
   QCoreApplication app(argc, argv);
   int ret = 0;
@@ -12,6 +12,5 @@ int main(int argc, char *argv[]) {
   GoogleTranslatorTest googleTranslatorTest;
   ret += QTest::qExec(&googleTranslatorTest, argc, argv);
 
-  app.exec();
   return ret;
 }

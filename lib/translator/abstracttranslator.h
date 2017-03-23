@@ -12,7 +12,7 @@ class AbstractTranslator {
 public:
   virtual ~AbstractTranslator() = default;
 
-  virtual QString translate(QString word, QString source, QString target) = 0;
+  virtual void translate(QString word, QString source, QString target) = 0;
 
 protected:
   virtual void handle(QNetworkReply *reply) = 0;

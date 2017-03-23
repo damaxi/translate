@@ -5,19 +5,31 @@
 #include "helper/locale.h"
 #include "translator/googletranslator.h"
 
-using namespace std;
-
 Translate::Translate(QObject *parent) : QObject(parent) {
   GoogleTranslator *googleTranslator = new GoogleTranslator(this);
   connect(googleTranslator, &GoogleTranslator::translateNotify, this,
           &Translate::setTranslated);
+  connect(googleTranslator, &GoogleTranslator::connectionProblem, this,
+          &Translate::changeProxy);
   proxies.push_back(googleTranslator);
 }
 
 void Translate::translate() {
-  if (!m_word.isEmpty() && !m_source.isEmpty() && !m_target.isEmpty())
+  if (!m_word.isEmpty() && !m_source.isEmpty() && !m_target.isEmpty()) {
     proxies.at(m_currentProxy)
         ->translate(m_word, fullStringMap[m_source], fullStringMap[m_target]);
+    setError(false);
+  }
+}
+
+void Translate::changeProxy() {
+  if (m_currentProxy != proxies.length() - 1) {
+    ++m_currentProxy;
+    translate();
+  } else {
+    m_currentProxy = 0;
+    setError(true);
+  }
 }
 
 QStringList Translate::listSupportedLanguages() const {
@@ -66,4 +78,14 @@ void Translate::setTranslated(QString translated) {
 
   m_translated = translated;
   emit notifyTranslated();
+}
+
+bool Translate::error() const { return m_error; }
+
+void Translate::setError(bool error) {
+  if (m_error == error)
+    return;
+
+  m_error = error;
+  emit errorChanged();
 }

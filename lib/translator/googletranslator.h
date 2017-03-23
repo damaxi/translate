@@ -14,10 +14,11 @@ class GoogleTranslator : public QObject, public AbstractTranslator {
 public:
   GoogleTranslator(QObject *parent = 0);
 
-  QString translate(QString word, QString source, QString target) override;
+  void translate(QString word, QString source, QString target) override;
 
 signals:
   void translateNotify(QString translated);
+  void connectionProblem();
 
 private:
   void handle(QNetworkReply *reply) override;

@@ -1,6 +1,5 @@
 #include "googletranslator.h"
 
-#include <QDebug>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QNetworkReply>
@@ -24,23 +23,25 @@ GoogleTranslator::GoogleTranslator(QObject *parent)
           &GoogleTranslator::handle);
 }
 
-QString GoogleTranslator::translate(QString word, QString source,
-                                    QString target) {
+void GoogleTranslator::translate(QString word, QString source, QString target) {
   QString preparedUrl = TRANSLATOR_URL.arg(source).arg(target).arg(word);
   m_network.get(QNetworkRequest(QUrl(preparedUrl)));
-  return preparedUrl;
 }
 
 void GoogleTranslator::handle(QNetworkReply *reply) {
-  QString replyString(reply->readAll());
-  replyString.replace("[", "");
-  replyString.replace("]", "");
-  QStringList keys = replyString.split(",", QString::SkipEmptyParts);
-  QString translated;
-  if (keys.length() == 4) {
-    translated = keys.first();
-    translated.replace("\"", "");
-  }
+  if (reply->error() == QNetworkReply::NoError) {
+    QString replyString(reply->readAll());
+    replyString.replace("[", "");
+    replyString.replace("]", "");
+    QStringList keys = replyString.split(",", QString::SkipEmptyParts);
+    QString translated;
+    if (keys.length() == 4) {
+      translated = keys.first();
+      translated.replace("\"", "");
+    }
 
-  emit translateNotify(translated);
+    emit translateNotify(translated);
+  } else {
+    emit connectionProblem();
+  }
 }
