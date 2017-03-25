@@ -22,7 +22,7 @@ public:
   Translate(QObject *parent = 0);
   virtual ~Translate() = default;
 
-  QStringList listSupportedLanguages() const;
+  Q_INVOKABLE QStringList listSupportedLanguages() const;
 
   QString word() const;
   void setWord(QString word);

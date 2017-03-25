@@ -19,6 +19,8 @@ void Translate::translate() {
     proxies.at(m_currentProxy)
         ->translate(m_word, fullStringMap[m_source], fullStringMap[m_target]);
     setError(false);
+  } else {
+    setTranslated("");
   }
 }
 
