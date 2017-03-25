@@ -8,12 +8,12 @@ before_install:
   - sudo apt-get update
 
 install:
-  - sudo apt-get install qt58base 
-  - sudo apt-get install qt58charts-no-lgpl 
-  - sudo apt-get install qt58quickcontrols2 
-  - sudo apt-get install qt58location 
-  - sudo apt-get install qt58declarative
-  - sudo apt-get install checkinstall 
+  - sudo apt-get install qt58base -y --force-yes
+  - sudo apt-get install qt58charts-no-lgpl -y --force-yes
+  - sudo apt-get install qt58quickcontrols2 -y --force-yes
+  - sudo apt-get install qt58location -y --force-yes
+  - sudo apt-get install qt58declarative -y --force-yes
+  - sudo apt-get install checkinstall -y --force-yes
   - source /opt/qt58/bin/qt58-env.sh
 
 script:
