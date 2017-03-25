@@ -1,4 +1,4 @@
-#translate
+# Translate Library
 [![Build Status](https://travis-ci.org/damaxi/translate.svg?branch=master)](https://travis-ci.org/damaxi/translate)   
 Qt translator library using translator using Google Translate, Bing Translator, Yandex.Translate etc;
 
